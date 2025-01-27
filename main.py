@@ -7,12 +7,7 @@ from Hardware import Modem, Plan, Precaution
 from Utils.Config import Config
 from Utils.Status import UserStatus
 from Utils.LineAPI import replyM
-import os
-class Config:
-    def __init__(self):
-        self.accessToken = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
-        self.channelSecret = os.getenv("LINE_CHANNEL_SECRET")
-        
+      
 app = Flask(__name__)
 
 CONFIG = Config()
