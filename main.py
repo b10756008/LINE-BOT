@@ -90,7 +90,7 @@ def handleTextMessage(event):
 
         replyM(configuration, rToken, flexM)
 
-    elif originalM == ("/認識硬體"):
+    elif currentUs == ("/認識硬體"):
         uS[uId] = UserStatus.SELECT_DEVICE
         imagemapMessage = ImagemapMessage(
             type="imagemap",
