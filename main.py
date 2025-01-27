@@ -94,7 +94,7 @@ def handleTextMessage(event):
         uS[uId] = UserStatus.SELECT_DEVICE
         imagemapMessage = ImagemapMessage(
             type="imagemap",
-            baseUrl="",
+            baseUrl="https://raw.githubusercontent.com/b10756008/LINE-BOT/refs/heads/main/img/richmessage_003_test.png?token=GHSAT0AAAAAAC56ONGLIHVJULKZJRJVIXN2Z4XVIAA",
             altText="硬體設備選單",
             baseSize=ImagemapBaseSize(height=1040, width=1040),
             actions=[
