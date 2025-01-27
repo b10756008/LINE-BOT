@@ -18,6 +18,10 @@ configuration2 = Configuration(
     access_token=CONFIG.accessToken2)
 handler2 = WebhookHandler(CONFIG.channelSecret2)
 
+@app.route("/", methods=["GET"])
+def home():
+    return "App is running.", 200
+
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers['X-Line-Signature']
