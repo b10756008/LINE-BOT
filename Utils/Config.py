@@ -1,3 +1,4 @@
+import os
 class Config():
     def __init__(self):
         self.accessToken = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
