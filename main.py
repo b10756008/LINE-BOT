@@ -30,14 +30,14 @@ def reponses_data():
             merged_data.update(data)
     return merged_data
 
-@app.route("/callback", methods=["POST"])
+@app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
     handler.handle(body, signature)
     return "Success: Get Callback"
 
-@app.route("/callback2", methods=["POST"])
+@app.route("/callback2", methods=['POST'])
 def callback2():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
@@ -58,10 +58,10 @@ def handleTextMessage(event):
     key_word = data[originalM]
 
     # 文字按鈕型
-    if key_word["template"] == "flex_button_msg":
+    if key_word['template'] == "flex_button_msg":
         flexM = FlexMessage(
             type="flex", 
-            altText=key_word["altText"], 
+            altText=key_word['altText'], 
             contents=FlexBubble(
                 type="bubble",
                 size="kilo",
@@ -69,40 +69,40 @@ def handleTextMessage(event):
                     type="box",
                     layout="vertical",
                     contents=[
-                        FlexText(type="text", text=key_word["contents_text"], weight="bold", size="xl"),
+                        FlexText(type="text", text=key_word['contents_text'], weight="bold", size="xl"),
                     ]
                 ),
                 footer=FlexBox(
                     type="box",
                     layout="vertical",
-                    contents=generateFlexB(key_word["footer"])
+                    contents=generateFlexB(key_word['footer'])
                 )
             )
         )
     # youtube影片型
-    elif key_word["template"] == "flex_yt_video":
+    elif key_word['template'] == "flex_yt_video":
         flexM = FlexMessage(
             type="flex",
-            altText=key_word["altText"],
+            altText=key_word['altText'],
             contents=FlexBubble(
                 type="bubble",
                 hero=FlexImage(
                     type="image",
-                    url=key_word["video_img_url"],
+                    url=key_word['video_img_url'],
                     size="full",
                     aspectRatio="16:9",
                     aspectMode="cover",
                     action=URIAction(
                         type="uri",
-                        uri=key_word["video_uri"]
+                        uri=key_word['video_uri']
                     )
                 ),
                 body=FlexBox(
                     type="box",
                     layout="vertical",
                     contents=[
-                        FlexText(type="text", text=f"{key_word["FlexBox"]["Main_text"]}", weight="bold", size="lg", wrap=True),
-                        FlexText(type="text", text=f"{key_word["FlexBox"]["Sub_text"]}", size="sm", color="#999999", wrap=True)
+                        FlexText(type="text", text=f"{key_word['FlexBox']['Main_text']}", weight="bold", size="lg", wrap=True),
+                        FlexText(type="text", text=f"{key_word['FlexBox']['Sub_text']}", size="sm", color="#999999", wrap=True)
                     ]
                 )
             )
