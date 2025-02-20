@@ -1,0 +1,4 @@
+flask
+line-bot-sdk==3.13.0
+orjson
+gunicorn
