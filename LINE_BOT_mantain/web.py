@@ -69,6 +69,7 @@ def upload_file():
 
     # 確認資料夾內的檔案
     files = os.listdir(UPLOAD_FOLDER)
+    print(files)
 
     # 存 JSON 檔案
     json_filename = file.filename.replace(".xlsx", ".json")
