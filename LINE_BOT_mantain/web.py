@@ -64,13 +64,6 @@ def upload_file():
             for _, row in df.iterrows()
         }
 
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
-
-    # 確認資料夾內的檔案
-    files = os.listdir(UPLOAD_FOLDER)
-    print(files)
-
     # 存 JSON 檔案
     json_filename = file.filename.replace(".xlsx", ".json")
     json_path = os.path.join(UPLOAD_FOLDER, json_filename)
