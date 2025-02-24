@@ -40,7 +40,8 @@ $("#uploadForm").submit(function (event) {
                 showCancelButton: true
             })
         },
-        error: function () {
+        error: function (error) {
+            console.log(error)
             Swal.fire({
                 title: "檔案上傳失敗",
                 text: "請確認檔案名稱及內容",
