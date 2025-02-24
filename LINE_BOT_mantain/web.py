@@ -6,12 +6,16 @@ import os
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = "uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+UPLOAD_FOLDER = "reponses"
 
 @app.route('/',methods=['POST','GET'])
 def index():
     return render_template("index.html")
+
+# 儲存json檔的資料夾
+@app.route("/reponses/<filename>")
+def download_json(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 @app.route('/flex_button_msg',methods=['POST','GET'])
 def flex_botton_msg():
@@ -25,17 +29,15 @@ def youtube_video():
 def upload_file():
     if "file" not in request.files:
         return "No file uploaded", 400
+    
     file = request.files["file"]
+    file_name = file.filename.split('.')[0]
     
     if file.filename == "":
         return "No selected file", 400
 
-    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-    file_name = file.filename.split('.')[0]
-    file.save(file_path)
-
     # 解析 Excel
-    df = pd.read_excel(file_path)
+    df = pd.read_excel(file)
 
     if file_name == "flex_button_msg":
         json_data = {
@@ -62,9 +64,15 @@ def upload_file():
             for _, row in df.iterrows()
         }
 
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+
+    # 確認資料夾內的檔案
+    files = os.listdir(UPLOAD_FOLDER)
+
     # 存 JSON 檔案
     json_filename = file.filename.replace(".xlsx", ".json")
-    json_path = os.path.join("reponses", json_filename)
+    json_path = os.path.join(UPLOAD_FOLDER, json_filename)
     
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(json_data, f, ensure_ascii=False, indent=4)
