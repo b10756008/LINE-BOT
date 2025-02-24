@@ -18,7 +18,7 @@ $("#uploadForm").submit(function (event) {
     else if(fileInput.name !== path_name+".xlsx"){
         Swal.fire({
             title: "檔案名稱錯誤",
-            text: `檔案名稱須為 ${path_name}`,
+            text: `檔案名稱須為 ${path_name}，當前為${fileInput.name}`,
             icon: "error",
             showCancelButton: true
         })
