@@ -80,7 +80,7 @@ def handleTextMessage(event):
             )
         )
     # youtube影片型
-    elif key_word['template'] == "flex_yt_video":
+    elif key_word['template'] == "youtube_video":
         flexM = FlexMessage(
             type="flex",
             altText=key_word['altText'],
