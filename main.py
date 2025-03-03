@@ -21,8 +21,8 @@ configuration2 = Configuration(
     access_token=CONFIG.accessToken2)
 handler2 = WebhookHandler(CONFIG.channelSecret2)
 
-def reponses_data():
-    json_files = glob.glob("reponses/*.json")  # 假設 JSON 檔案放在 data 資料夾內
+def responses_data():
+    json_files = glob.glob("responses/*.json")  # 假設 JSON 檔案放在 data 資料夾內
     merged_data = {}
     for file in json_files:
         with open(file, "r", encoding="utf-8") as f:
@@ -51,7 +51,7 @@ def handleTextMessage(event):
     rToken = event.reply_token
     originalM = event.message.text
 
-    data = reponses_data()
+    data = responses_data()
     # currentUs = uS.get(uId)
     # uS[uId] = UserStatus.SELECT_PRECAUTION
     # 讀取json資料
@@ -80,7 +80,7 @@ def handleTextMessage(event):
             )
         )
     # youtube影片型
-    elif key_word['template'] == "youtube_video":
+    elif key_word['template'] == "flex_yt_video":
         flexM = FlexMessage(
             type="flex",
             altText=key_word['altText'],
